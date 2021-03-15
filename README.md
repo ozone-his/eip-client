@@ -31,11 +31,13 @@ The **routes** folder may contain multiple single level directories with any num
 ## Build
 From the terminal, navigate to your working directory, clone and build the project to generate the executable artifacts
 by running the commands below.
-```shell
+
+```
 git clone https://github.com/mekomsolutions/eip-app.git
 cd eip-app
 mvn clean install
 ```
+
 Make sure the build completed successfully.
 
 ## Running the App
