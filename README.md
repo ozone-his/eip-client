@@ -5,16 +5,16 @@ This app is a Spring Boot application that depends on the [openmrs-eip](https://
 ```
 .
 ├── config/
-|      ├── odoo-config
+|      ├── odoo-config/
 |      |       └── application.properties
-|      ├── senaite-config
+|      ├── senaite-config/
 |      |       └── application.properties
 |      └── ...
 ├── routes/
-|      ├── odoo-routes
+|      ├── odoo-routes/
 |      |       ├── example-odoo-route.xml
 |      |       └── ...
-|      ├── senaite-routes
+|      ├── senaite-routes/
 |      |       ├── example-senaite-route.xml
 |      |       └── ...
 |      ├── ...
