@@ -1,0 +1,8 @@
+services:
+    eipapp: 
+      build: ./
+      container_name: eip-app
+      volumes:
+        - ./properties/application.properties:/application.properties
+        - ./distro/config:/config
+        - ./distro/routes:/routes
