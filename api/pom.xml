@@ -14,32 +14,42 @@
   <name>EIP api</name>
    
    <dependencies>
-   	<dependency>
-   	  	<groupId>org.openmrs.eip</groupId>
-	    <artifactId>openmrs-watcher</artifactId>
-   	  	<version>2.0.0-SNAPSHOT</version>
-   	</dependency>
+   	  <dependency>
+   	  	 <groupId>org.openmrs.eip</groupId>
+	     <artifactId>openmrs-watcher</artifactId>
+   	  	 <version>${openmrsWatcherVersion}</version>
+   	  </dependency>
 
       <!-- Camel --> 
       <dependency>
+      	 <groupId>org.apache.camel</groupId>
+    	 <artifactId>camel-http</artifactId>
+    	 <version>${camelVersion}</version>    
+	  </dependency>
+	  <dependency>
+         <groupId>org.apache.xmlrpc</groupId>
+         <artifactId>xmlrpc-client</artifactId>
+         <version>${xmlRpcClientVersion}</version>
+      </dependency>
+      <dependency>
          <groupId>org.apache.camel</groupId>
          <artifactId>camel-jackson</artifactId>
-         <version>${camel-version}</version>
+         <version>${camelVersion}</version>
       </dependency>
       <dependency>
          <groupId>org.apache.camel</groupId>
          <artifactId>camel-jaxb</artifactId>
-         <version>${camel-version}</version>
+         <version>${camelVersion}</version>
       </dependency> 
       <dependency>
 	     <groupId>org.apache.camel</groupId>
 	     <artifactId>camel-jpa</artifactId>
-	     <version>${camel-version}</version>
+	     <version>${camelVersion}</version>
 	  </dependency>
 	  <dependency>
 		 <groupId>org.apache.camel</groupId>
 		 <artifactId>camel-base64</artifactId>
-		 <version>${camel-version}</version>  <!-- use the same version as your Camel core version -->
+		 <version>${camelVersion}</version>
 	  </dependency>
 	  <dependency>
 		 <groupId>junit</groupId>
