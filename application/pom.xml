@@ -8,7 +8,7 @@
       <artifactId>eip</artifactId>
       <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>${project.parent.artifactId}-application</artifactId>
+  <artifactId>eip-application</artifactId>
   <packaging>jar</packaging>
 
   <name>EIP application</name>
@@ -18,7 +18,7 @@
     <!-- api -->
     <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>${project.parent.artifactId}-api</artifactId>
+        <artifactId>eip-api</artifactId>
         <version>${project.version}</version>
     </dependency>
    </dependencies>

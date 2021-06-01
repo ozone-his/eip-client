@@ -8,7 +8,7 @@
       <artifactId>eip</artifactId>
       <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>${project.parent.artifactId}-api</artifactId>
+  <artifactId>eip-api</artifactId>
   <packaging>jar</packaging>
   
   <name>EIP api</name>
