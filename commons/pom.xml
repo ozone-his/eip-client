@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
       <groupId>net.mekomsolutions</groupId>
       <artifactId>eip-client</artifactId>
       <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>eip-client-commons</artifactId>
-  <packaging>jar</packaging>
-  
-  <name>EIP client commons</name>
-   
+   </parent>
+   <artifactId>eip-client-commons</artifactId>
+   <packaging>jar</packaging>
+   <name>EIP client commons</name>
    <dependencies>
-   	  <dependency>
-   	  	 <groupId>org.openmrs.eip</groupId>
-	     <artifactId>openmrs-watcher</artifactId>
-   	  	 <version>${openmrsWatcherVersion}</version>
-   	  </dependency>
-
-      <!-- Camel --> 
       <dependency>
-      	 <groupId>org.apache.camel</groupId>
-    	 <artifactId>camel-http</artifactId>
-    	 <version>${camelVersion}</version>    
-	  </dependency>
-	  <dependency>
+         <groupId>org.openmrs.eip</groupId>
+         <artifactId>openmrs-watcher</artifactId>
+         <version>${openmrsWatcherVersion}</version>
+      </dependency>
+      <!-- Camel -->
+      <dependency>
+         <groupId>org.apache.camel</groupId>
+         <artifactId>camel-http</artifactId>
+         <version>${camelVersion}</version>
+      </dependency>
+      <dependency>
          <groupId>org.apache.xmlrpc</groupId>
          <artifactId>xmlrpc-client</artifactId>
          <version>${xmlRpcClientVersion}</version>
@@ -40,24 +35,23 @@
          <groupId>org.apache.camel</groupId>
          <artifactId>camel-jaxb</artifactId>
          <version>${camelVersion}</version>
-      </dependency> 
+      </dependency>
       <dependency>
-	     <groupId>org.apache.camel</groupId>
-	     <artifactId>camel-jpa</artifactId>
-	     <version>${camelVersion}</version>
-	  </dependency>
-	  <dependency>
-		 <groupId>org.apache.camel</groupId>
-		 <artifactId>camel-base64</artifactId>
-		 <version>${camelVersion}</version>
-	  </dependency>
-	  <dependency>
-		 <groupId>junit</groupId>
-		 <artifactId>junit</artifactId>
-		 <version>4.13.2</version>
-	  </dependency>
+         <groupId>org.apache.camel</groupId>
+         <artifactId>camel-jpa</artifactId>
+         <version>${camelVersion}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.camel</groupId>
+         <artifactId>camel-base64</artifactId>
+         <version>${camelVersion}</version>
+      </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.13.2</version>
+      </dependency>
    </dependencies>
-   
    <build>
       <plugins>
          <plugin>
