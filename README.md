@@ -41,8 +41,8 @@ mvn clean install
 Make sure the build completed successfully.
 
 ## Running the App
-Following the above file structure, copy the generated `.jar` file located at `eip-app/application/target/` path into the working root directory and run the app on commandline with the following command.
+Following the above file structure, copy the generated `.jar` file located at `eip-client/app/target/` path into the working root directory and run the app on commandline with the following command.
 
 ```
-java -jar eip-application-1.0.0-SNAPSHOT.jar
+java -jar eip-client-app-1.0.0-SNAPSHOT.jar
 ```
