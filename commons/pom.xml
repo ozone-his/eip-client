@@ -5,13 +5,13 @@
   
   <parent>
       <groupId>net.mekomsolutions</groupId>
-      <artifactId>eip</artifactId>
+      <artifactId>eip-client</artifactId>
       <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>eip-api</artifactId>
+  <artifactId>eip-client-commons</artifactId>
   <packaging>jar</packaging>
   
-  <name>EIP api</name>
+  <name>EIP client commons</name>
    
    <dependencies>
    	  <dependency>
