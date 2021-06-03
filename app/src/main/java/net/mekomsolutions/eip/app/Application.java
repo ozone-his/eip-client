@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"org.openmrs.eip"})
+@SpringBootApplication(scanBasePackages = {"org.openmrs.eip, net.mekomsolutions.eip.utils"})
 public class Application {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Application.class);
