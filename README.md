@@ -1,4 +1,4 @@
-# EIP client
+# EIP Client
 
 This is a Spring Boot application that depends on the [openmrs-eip](https://github.com/openmrs/openmrs-eip) watcher, forwarding debezium generated events to provided xml camel routes. The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
 
