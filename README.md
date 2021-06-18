@@ -1,4 +1,4 @@
-# EIP Client
+# OpenMRS EIP Client
 
 This is a Spring Boot application that depends on the [openmrs-eip](https://github.com/openmrs/openmrs-eip) watcher, forwarding debezium generated events to provided xml camel routes. The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
 
@@ -20,7 +20,7 @@ This is a Spring Boot application that depends on the [openmrs-eip](https://gith
 |      ├── ...
 |      └── general-route.xml
 ├── application.properties
-└── eip-app-1.0.0-SNAPSHOT.jar
+└── openmrs-eip-client-<version>.jar
 
 ```
 
@@ -41,8 +41,8 @@ mvn clean install
 Make sure the build completed successfully.
 
 ## Running the App
-Following the above file structure, copy the generated `.jar` file located at `eip-client/app/target/` path into the working root directory and run the app on commandline with the following command.
+Following the above file structure, copy the generated `.jar` file located at `eip-client/app/target/` path into the working root directory and run the app on commandline with the following command, where `<version>` represents the compiled version.
 
 ```
-java -jar client-app-1.0.0-SNAPSHOT.jar
+java -jar openmrs-eip-client-<version>.jar
 ```

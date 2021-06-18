@@ -3,21 +3,22 @@
    <modelVersion>4.0.0</modelVersion>
    <parent>
       <groupId>net.mekomsolutions.eip</groupId>
-      <artifactId>client</artifactId>
+      <artifactId>openmrs-eip-client</artifactId>
       <version>1.0.0-SNAPSHOT</version>
    </parent>
-   <artifactId>client-app</artifactId>
+   <artifactId>openmrs-eip-client-app</artifactId>
    <packaging>jar</packaging>
    <name>EIP client app</name>
    <dependencies>
       <!-- api -->
       <dependency>
          <groupId>${project.groupId}</groupId>
-         <artifactId>client-commons</artifactId>
+         <artifactId>openmrs-eip-client-commons</artifactId>
          <version>${project.version}</version>
       </dependency>
    </dependencies>
    <build>
+   	<finalName>openmrs-eip-client-${project.version}</finalName>
       <plugins>
          <plugin>
             <artifactId>maven-clean-plugin</artifactId>
@@ -47,6 +48,7 @@
                   <goals>
                      <goal>repackage</goal>
                   </goals>
+                  
                </execution>
             </executions>
          </plugin>
