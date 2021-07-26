@@ -28,7 +28,7 @@ The **config** folder may contain multiple single level directories with an **ap
 
 The **routes** folder may contain multiple single level directories with any number of **xml defined routes** in each. Further still, any number of **xml defined route** may be provided in the **routes** directory.
 
-## Build
+## Build the app
 From the terminal, navigate to your working directory, clone and build the project to generate the executable artifacts
 by running the commands below.
 
@@ -45,4 +45,29 @@ Following the above file structure, copy the generated `.jar` file located at `e
 
 ```
 java -jar openmrs-eip-client-<version>.jar
+```
+
+
+# Docker
+
+The app can also be shipped as a Docker image.
+
+## Build the Docker image
+
+```
+mv app/target/*jar docker/
+cd docker/
+docker build . -t mekomsolutions/eip-client:latest
+```
+
+This image can now be consumed in a docker-compose.yml with:
+```
+eip-client:
+   image: mekomsolutions/eip-client:latest
+   volumes:
+     - "./path-to-your-configs:/config"
+     - "./path-to-your-routes:/routes"
+     - eip-home:/eip-home
+   ports:
+   - "8083:8083"
 ```
