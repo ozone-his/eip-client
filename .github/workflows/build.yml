@@ -13,6 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Build with Maven
+        run: mvn clean package
+
+      - name: Copy build artifact
+        run: cp app/target/*.jar docker/
+
       - name: Start Terraform infrastructure
         run: |
           export TF_VAR_aws_api_key='${{ secrets.AWS_API_KEY_1 }}'
