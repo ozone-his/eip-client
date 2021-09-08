@@ -36,5 +36,5 @@ echo "⚙️ Create manifest '$DOCKER_USERNAME/eip-client:latest'..."
 sudo docker manifest create $DOCKER_USERNAME/eip-client:latest ${args}
 echo "⚙️ Pushing manifest..."
 sudo docker manifest push $DOCKER_USERNAME/eip-client:latest
-done
+
 EOF
