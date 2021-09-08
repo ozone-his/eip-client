@@ -25,7 +25,7 @@ sudo docker login -p $DOCKER_PASSWORD -u $DOCKER_USERNAME
 EOF
 
 ssh -t -o StrictHostKeyChecking=no -i $AWS_AMI_PRIVATE_KEY_FILE -p 22 ubuntu@$ip /bin/bash -e << EOF
-cd eip-client/docker
+cd repo/docker
 echo "⚙️ Will push the manifests for EIP Client"
 echo "⚙️ Create manifest '$DOCKER_USERNAME/eip-client:${REVISION}'..."
 sudo docker manifest create $DOCKER_USERNAME/eip-client:${REVISION} ${args}

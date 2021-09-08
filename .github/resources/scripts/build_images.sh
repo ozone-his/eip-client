@@ -16,7 +16,7 @@ do
   echo "Remote: $arch: $ip"
 
   ssh -t -o StrictHostKeyChecking=no -i $AWS_AMI_PRIVATE_KEY_FILE -p 22 ubuntu@$ip /bin/bash -e << EOF
-cd eip-client/docker
+cd repo/docker
 echo "⚙️ Build EIP Client image and tag it as '$DOCKER_USERNAME/eip-client:${REVISION}_$arch'..."
 sudo docker build ./ -t $DOCKER_USERNAME/eip-client:${REVISION}_${arch}
 EOF

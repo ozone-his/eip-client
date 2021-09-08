@@ -19,7 +19,7 @@ EOF
 
 echo "⚙️ Run Docker push commands on remote."
 ssh -t -o StrictHostKeyChecking=no -i $AWS_AMI_PRIVATE_KEY_FILE -p 22 ubuntu@$ip /bin/bash -e << EOF
-  cd eip-client/docker
+  cd repo/docker
   echo "⚙️ Pushing EIP Client image
   echo "⚙️ Pushing '$DOCKER_USERNAME/eip-client:${REVISION}_$arch'..."
   sudo docker push $DOCKER_USERNAME/eip-client:${REVISION}_$arch
