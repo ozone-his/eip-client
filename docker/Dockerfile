@@ -1,5 +1,4 @@
 FROM openjdk:8-jdk-alpine
-EXPOSE 8083
 RUN mkdir /config
 RUN mkdir /routes
 RUN mkdir /eip-home

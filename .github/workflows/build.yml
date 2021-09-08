@@ -22,10 +22,10 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
-      - name: Copy build artifact
-        run: cp app/target/*.jar docker/
+      - name: Move the built artifact
+        run: mv app/target/*.jar docker/
 
-      - name: Start Terraform infrastructure
+      - name: Start custom Docker builders (ARM & AMD) with Terraform
         run: |
           export TF_VAR_aws_api_key='${{ secrets.AWS_API_KEY_1 }}'
           export TF_VAR_aws_api_secret='${{ secrets.AWS_API_SECRET_1 }}'
@@ -46,7 +46,7 @@ jobs:
         run: |
           ./.github/resources/scripts/copy_files.sh
 
-      - name: Build images on remote instances
+      - name: Build Docker images on remote instances
         run: |
           ./.github/resources/scripts/build_images.sh
 
