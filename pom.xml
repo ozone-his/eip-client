@@ -8,6 +8,7 @@
    <modules>
       <module>commons</module>
       <module>app</module>
+      <module>test</module>
    </modules>
    <name>EIP client</name>
    <properties>
