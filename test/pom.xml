@@ -34,11 +34,6 @@
    
    <dependencies>
       <dependency>
-         <groupId>net.mekomsolutions.eip</groupId>
-         <artifactId>openmrs-eip-client-commons</artifactId>
-         <version>${project.parent.version}</version>
-         
-      </dependency>
       <dependency>
          <groupId>org.openmrs.eip</groupId>
          <artifactId>openmrs-watcher</artifactId>
