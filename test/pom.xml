@@ -34,7 +34,6 @@
    
    <dependencies>
       <dependency>
-      <dependency>
          <groupId>org.openmrs.eip</groupId>
          <artifactId>openmrs-watcher</artifactId>
          <type>test-jar</type>
