@@ -35,15 +35,18 @@ jobs:
         run: mvn clean package
 
       - name: Move the built artifact
+        if: github.ref == 'refs/heads/main'
         run: mv app/target/*.jar docker/
 
       - name: Start custom Docker builders (ARM & AMD) with Terraform
+        if: github.ref == 'refs/heads/main'
         run: |
           export TF_VAR_aws_api_key='${{ secrets.AWS_API_KEY_1 }}'
           export TF_VAR_aws_api_secret='${{ secrets.AWS_API_SECRET_1 }}'
           ./.github/resources/scripts/start_terraform.sh
 
       - name: Set new AWS instances private key
+        if: github.ref == 'refs/heads/main'
         run: |
           echo "⚙️ Set AWS AMI private key."
           AWS_AMI_PRIVATE_KEY_FILE=$(mktemp)
@@ -52,13 +55,16 @@ jobs:
           echo "AWS_AMI_PRIVATE_KEY_FILE=$AWS_AMI_PRIVATE_KEY_FILE" >> $GITHUB_ENV
 
       - name: Wait for 60s
+        if: github.ref == 'refs/heads/main'
         run: sleep 60s
 
       - name: Copy files
+        if: github.ref == 'refs/heads/main'
         run: |
           ./.github/resources/scripts/copy_files.sh
 
       - name: Build Docker images on remote instances
+        if: github.ref == 'refs/heads/main'
         run: |
           ./.github/resources/scripts/build_images.sh
 
