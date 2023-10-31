@@ -33,8 +33,8 @@ From the terminal, navigate to your working directory, clone and build the proje
 by running the commands below.
 
 ```
-git clone https://github.com/mekomsolutions/eip-client.git
-cd eip-app
+git clone https://github.com/ozone-his/eip-client.git
+cd eip-client
 mvn clean install
 ```
 
