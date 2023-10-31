@@ -1,4 +1,4 @@
-package net.mekomsolutions.eip.app;
+package com.ozonehis.eip.app;
 
 import org.openmrs.eip.app.config.AppConfig;
 import org.slf4j.Logger;
@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-@SpringBootApplication(scanBasePackages = {"org.openmrs.eip, net.mekomsolutions.eip.utils"})
+@SpringBootApplication(scanBasePackages = {"org.openmrs.eip, com.ozonehis.eip.utils"})
 @Import(AppConfig.class)
 public class Application {
 	
