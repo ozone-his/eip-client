@@ -1,6 +1,7 @@
 # Ozone EIP Client
 
-A generic Spring Boot application, designed for executing Apache Camel routes. The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
+A generic Spring Boot application designed for executing Apache Camel routes within Ozone.
+<br/>The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
 
 ```
 .
@@ -21,7 +22,6 @@ A generic Spring Boot application, designed for executing Apache Camel routes. T
 |      └── general-route.xml
 ├── application.properties
 └── eip-client-<version>.jar
-
 ```
 
 The **config** folder may contain multiple single level directories with an **application.properties** file in each. 
@@ -52,17 +52,17 @@ Follow the instructions below to get a copy of the project up and running on you
     java -jar app/target/eip-client-<version>.jar
     ```
 
-# Docker
+## Docker Support
 
-## Building a Docker image
+### Building a Docker image
 
-```
+```bash
 mv app/target/*jar docker/
 cd docker/
 docker build . -t mekomsolutions/eip-client:latest
 ```
 
-This image can now be consumed in a docker-compose.yml with:
+This image can now be consumed in a docker-compose.yml file with:
 ```
 eip-client:
    image: mekomsolutions/eip-client:latest
