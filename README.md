@@ -1,6 +1,7 @@
-# OpenMRS EIP Client
+# Ozone EIP Client
 
-This is a Spring Boot application that depends on the [openmrs-eip](https://github.com/openmrs/openmrs-eip) watcher, forwarding Debezium generated events to provided xml camel routes. The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
+A generic Spring Boot application designed for executing Apache Camel routes within Ozone.
+<br/>The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
 
 ```
 .
@@ -20,47 +21,48 @@ This is a Spring Boot application that depends on the [openmrs-eip](https://gith
 |      ├── ...
 |      └── general-route.xml
 ├── application.properties
-└── openmrs-eip-client-<version>.jar
-
+└── eip-client-<version>.jar
 ```
 
-The **config** folder may contain multiple single level directories with an **application.properties** file in each. This is the file organisation supported by Spring Boot version 2.3.0+.
+The **config** folder may contain multiple single level directories with an **application.properties** file in each. 
 
 The **routes** folder may contain multiple single level directories with any number of **xml defined routes** in each. Further still, any number of **xml defined route** may be provided in the **routes** directory.
 
-## Build the app
-From the terminal, navigate to your working directory, clone and build the project to generate the executable artifacts
-by running the commands below.
+## Getting Started
 
-```
-git clone https://github.com/ozone-his/eip-client.git
-cd eip-client
-mvn clean install
-```
+Follow the instructions below to get a copy of the project up and running on your local machine for development and testing purposes.
 
-Make sure the build completed successfully.
+1. **Clone the project**
+     ```bash
+    git clone https://github.com/ozone-his/eip-client.git
+     ```
 
-## Running the App
-Following the above file structure, copy the generated `.jar` file located at `eip-client/app/target/` path into the working root directory and run the app on command line with the following command, where `<version>` represents the compiled version.
+2. **Build the project**
+   
+    Navigate to the project directory and build the application using Maven:
+    ```bash
+    cd eip-client
+    mvn clean install
+    ``` 
 
-```
-java -jar openmrs-eip-client-<version>.jar
-```
+3. **Run the app**
+   
+    After building the project, you can run the application using the following command:
+    ```bash
+    java -jar app/target/eip-client-<version>.jar
+    ```
 
+## Docker Support
 
-# Docker
+### Building a Docker image
 
-The app can also be shipped as a Docker image.
-
-## Build the Docker image
-
-```
+```bash
 mv app/target/*jar docker/
 cd docker/
 docker build . -t mekomsolutions/eip-client:latest
 ```
 
-This image can now be consumed in a docker-compose.yml with:
+This image can now be consumed in a docker-compose.yml file with:
 ```
 eip-client:
    image: mekomsolutions/eip-client:latest
