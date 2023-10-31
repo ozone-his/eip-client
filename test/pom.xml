@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
-   <parent>
-      <groupId>com.ozonehis.eip</groupId>
-      <artifactId>eip-client</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
-   </parent>
-   <artifactId>eip-client-test</artifactId>
-   <packaging>pom</packaging>
-   <name>EIP client test</name>
-   <description>The test dependencies routes using the EIP client</description>
-   <properties>    
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <maven.compiler.source>1.8</maven.compiler.source>
-      <maven.compiler.target>1.8</maven.compiler.target>
-      <camelVersion>3.3.0</camelVersion>
-      <testContainersVersion>1.15.2</testContainersVersion>
-      <springBootStarterTestVersion>2.3.0.RELEASE</springBootStarterTestVersion>
-   </properties>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.ozonehis.eip</groupId>
+    <artifactId>eip-client</artifactId>
+    <version>1.2.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>eip-client-test</artifactId>
+  <packaging>pom</packaging>
+  <name>EIP client test</name>
+  <description>The test dependencies routes using the EIP client</description>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <camelVersion>3.3.0</camelVersion>
+    <testContainersVersion>1.15.2</testContainersVersion>
+    <springBootStarterTestVersion>2.3.0.RELEASE</springBootStarterTestVersion>
+  </properties>
 
-   <dependencyManagement>
-      <dependencies>
-         <!-- camel BOM -->
-         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-parent</artifactId>
-            <version>${camelVersion}</version>
-            <scope>import</scope>
-            <type>pom</type>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
-   
-   <dependencies>
-      <dependency>
-         <groupId>org.openmrs.eip</groupId>
-         <artifactId>openmrs-watcher</artifactId>
-         <type>test-jar</type>
-         <version>${openmrsWatcherVersion}</version>
-     </dependency>
-     <dependency>
-         <groupId>org.openmrs.eip</groupId>
-         <artifactId>commons</artifactId>
-         <type>test-jar</type>
-         <version>${openmrsWatcherVersion}</version>
-     </dependency>
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-      </dependency>
-
-      <!-- Camel --> 
-      
-      <dependency>
-         <groupId>org.apache.camel</groupId>
-         <artifactId>camel-test-spring</artifactId>
-         <version>${camelVersion}</version>
-      </dependency>
+  <dependencyManagement>
+    <dependencies>
+      <!-- camel BOM -->
       <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-jpa</artifactId>
+        <artifactId>camel-parent</artifactId>
         <version>${camelVersion}</version>
-     </dependency>
-     <dependency>
-         <groupId>org.apache.camel</groupId>
-         <artifactId>camel-base64</artifactId>
-         <version>${camelVersion}</version>
-     </dependency>
-     <dependency>
-         <groupId>org.apache.camel</groupId>
-         <artifactId>camel-jackson</artifactId>
-         <version>${camelVersion}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
-     <dependency>
-         <groupId>org.apache.camel</groupId>
-         <artifactId>camel-jaxb</artifactId>
-         <version>${camelVersion}</version>
-      </dependency> 
-     <dependency>
-         <groupId>org.testcontainers</groupId>
-         <artifactId>mysql</artifactId>
-         <version>${testContainersVersion}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
-         <version>${springBootStarterTestVersion}</version>
-         <exclusions>
-         <exclusion>
-           <groupId>junit</groupId>
-           <artifactId>junit</artifactId>
-         </exclusion>
-        </exclusions>
-      </dependency>
-   </dependencies>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.openmrs.eip</groupId>
+      <artifactId>openmrs-watcher</artifactId>
+      <version>${openmrsWatcherVersion}</version>
+      <type>test-jar</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.eip</groupId>
+      <artifactId>commons</artifactId>
+      <version>${openmrsWatcherVersion}</version>
+      <type>test-jar</type>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
+    <!-- Camel -->
+
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-test-spring</artifactId>
+      <version>${camelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jpa</artifactId>
+      <version>${camelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-base64</artifactId>
+      <version>${camelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jackson</artifactId>
+      <version>${camelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb</artifactId>
+      <version>${camelVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mysql</artifactId>
+      <version>${testContainersVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <version>${springBootStarterTestVersion}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
 </project>
