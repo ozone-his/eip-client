@@ -1,4 +1,4 @@
-package net.mekomsolutions.eip.utils;
+package com.ozonehis.eip.utils;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

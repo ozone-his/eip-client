@@ -1,4 +1,4 @@
-package net.mekomsolutions.eip.utils;
+package com.ozonehis.eip.utils;
 
 import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
