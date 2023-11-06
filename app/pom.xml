@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.ozonehis.eip</groupId>
+    <groupId>com.ozonehis</groupId>
     <artifactId>eip-client</artifactId>
     <version>1.2.0-SNAPSHOT</version>
   </parent>
@@ -13,7 +13,7 @@
     <!-- api -->
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>eip-client-commons</artifactId>
+      <artifactId>eip-commons</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
@@ -49,7 +49,6 @@
             <goals>
               <goal>repackage</goal>
             </goals>
-
           </execution>
         </executions>
       </plugin>
