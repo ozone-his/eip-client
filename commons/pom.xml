@@ -2,13 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.ozonehis.eip</groupId>
+    <groupId>com.ozonehis</groupId>
     <artifactId>eip-client</artifactId>
     <version>1.2.0-SNAPSHOT</version>
   </parent>
-  <artifactId>eip-client-commons</artifactId>
+  <artifactId>eip-commons</artifactId>
   <packaging>jar</packaging>
-  <name>EIP client commons</name>
+  <name>EIP Commons</name>
+  <description>A collections of shared EIP utils/commons libraries.</description>
+
   <dependencies>
     <dependency>
       <groupId>org.openmrs.eip</groupId>
