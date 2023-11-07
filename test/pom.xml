@@ -8,8 +8,8 @@
   </parent>
   <artifactId>eip-commons-test</artifactId>
   <packaging>pom</packaging>
-  <name>EIP commons test</name>
-  <description>The test dependencies routes using the EIP client</description>
+  <name>EIP Commons Test</name>
+  <description>The test dependencies routes using the EIP client.</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,7 +22,7 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- camel BOM -->
+      <!-- Camel POM -->
       <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
@@ -52,7 +52,6 @@
     </dependency>
 
     <!-- Camel -->
-
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-test-spring</artifactId>
