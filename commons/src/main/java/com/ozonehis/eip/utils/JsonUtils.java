@@ -1,6 +1,5 @@
 package com.ozonehis.eip.utils;
 
-import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,12 +17,12 @@ public final class JsonUtils {
         if (jsonArray == null || jsonArray.isEmpty()) {
             return "";
         }
-        final StringBuilder builder = new StringBuilder("");
+        final StringBuilder builder = new StringBuilder();
         JSONArray array = new JSONArray(jsonArray);
         array.forEach((item) -> {
-            builder.append(",\"" + ((JSONObject) item).getString(key) + "\"");
+            builder.append(",\"").append(((JSONObject) item).getString(key)).append("\"");
         });
-        return builder.toString().substring(1);
+        return builder.substring(1);
     }
 
     /**
@@ -38,9 +37,8 @@ public final class JsonUtils {
             return false;
         }
         JSONArray array = new JSONArray(jsonArray);
-        Iterator<Object> it = array.iterator();
-        while (it.hasNext()) {
-            if (value.equalsIgnoreCase(((JSONObject) it.next()).getString(key))) return true;
+        for (Object o : array) {
+            if (value.equalsIgnoreCase(((JSONObject) o).getString(key))) return true;
         }
         return false;
     }
@@ -57,9 +55,8 @@ public final class JsonUtils {
             final String jsonArray, final String propertyName, final String key, final String value) {
         String propertyValue = "";
         JSONArray array = new JSONArray(jsonArray);
-        Iterator<Object> it = array.iterator();
-        while (it.hasNext()) {
-            JSONObject obj = ((JSONObject) it.next());
+        for (Object o : array) {
+            JSONObject obj = ((JSONObject) o);
             if (value.equalsIgnoreCase(obj.getString(key))) {
                 propertyValue = obj.getString(propertyName);
                 break;

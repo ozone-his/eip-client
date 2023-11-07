@@ -1,32 +1,6 @@
 # Ozone EIP Client
 
-A generic Spring Boot application designed for executing Apache Camel routes within Ozone.
-<br/>The application is run in the same directory that may contain a **config** & **routes** folders and **application.properties** file providing default properties.
-
-```
-.
-├── config/
-|      ├── odoo-config/
-|      |       └── application.properties
-|      ├── senaite-config/
-|      |       └── application.properties
-|      └── ...
-├── routes/
-|      ├── odoo-routes/
-|      |       ├── example-odoo-route.xml
-|      |       └── ...
-|      ├── senaite-routes/
-|      |       ├── example-senaite-route.xml
-|      |       └── ...
-|      ├── ...
-|      └── general-route.xml
-├── application.properties
-└── eip-client-<version>.jar
-```
-
-The **config** folder may contain multiple single level directories with an **application.properties** file in each.
-
-The **routes** folder may contain multiple single level directories with any number of **xml defined routes** in each. Further still, any number of **xml defined route** may be provided in the **routes** directory.
+A generic Spring Boot application designed for executing Apache Camel routes within Ozone. It can be used as a base image for building custom EIP clients. It has support for **_Java DSL_** and **_XML DSL_** routes.
 
 ## Getting Started
 
@@ -58,21 +32,30 @@ Follow the instructions below to get a copy of the project up and running on you
 ### Building a Docker image
 
 ```bash
-mv app/target/*jar docker/
-cd docker/
 docker build . -t mekomsolutions/eip-client:latest
 ```
 
 This image can now be consumed in a docker-compose.yml file with:
 
-```
+```yaml
 eip-client:
    image: mekomsolutions/eip-client:latest
+   container_name: eip-client
    volumes:
      - "./path-to-your-configs:/config"
      - "./path-to-your-routes:/routes"
-     - eip-home:/eip-home
+     - "./path-to-your-java-routes:/camel/java-routes"
+     - "./eip-home:/eip-home"
    ports:
    - "8083:8083"
 ```
 
+### Running the Docker image
+
+```bash
+docker run -p 8083:8083 -v ./path-to-your-configs:/config -v ./path-to-your-routes:/routes -v ./path-to-your-java-routes:/camel/java-routes mekomsolutions/eip-client:latest
+```
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](https://www.apache.org/licenses/LICENSE-2.0.txt) file for details.
