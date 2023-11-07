@@ -8,8 +8,8 @@
   </parent>
   <artifactId>eip-commons</artifactId>
   <packaging>jar</packaging>
-  <name>EIP commons</name>
-  <description>A collections of shared libraries</description>
+  <name>EIP Commons</name>
+  <description>A collections of shared EIP utils/commons libraries.</description>
 
   <dependencies>
     <dependency>
