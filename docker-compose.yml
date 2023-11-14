@@ -3,14 +3,10 @@ services:
   ozone-eip-client:
     image: eip-client:latest
     container_name: ozone-eip-client
-    environment:
-      - EXTRA_JAVA_OPTS=
-      - EIP_CONFIG_DIR=/config
-      - EIP_ROUTES_DIR=/routes
     ports:
       - "8080:8080"
     volumes:
-      - ./routes:/ozone-eip-client/camel/xml-routes
+      - ./routes:/ozone-eip-client/routes
 
 volumes:
     routes: ~
