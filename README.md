@@ -1,4 +1,5 @@
 # Ozone EIP Client
+
 [![CI](https://github.com/ozone-his/eip-client/actions/workflows/build.yml/badge.svg)](https://github.com/ozone-his/eip-client/actions/workflows/build.yml)
 
 A generic Spring Boot application designed for executing Apache Camel routes within Ozone. It can be used as a base image for building custom EIP clients. It has support for **_Java DSL_** and **_XML DSL_** routes.
@@ -45,7 +46,6 @@ eip-client:
    volumes:
      - "./path-to-your-configs:/config"
      - "./path-to-your-routes:/routes"
-     - "./path-to-your-java-routes:/camel/java-routes"
      - "./eip-home:/eip-home"
    ports:
    - "8083:8083"
@@ -54,7 +54,7 @@ eip-client:
 ### Running the Docker image
 
 ```bash
-docker run -p 8083:8083 -v ./path-to-your-configs:/config -v ./path-to-your-routes:/routes -v ./path-to-your-java-routes:/camel/java-routes mekomsolutions/eip-client:latest
+docker run -p 8083:8083 -v ./path-to-your-configs:/config -v ./path-to-your-routes:/routes mekomsolutions/eip-client:latest
 ```
 
 ## License
