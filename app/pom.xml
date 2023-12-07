@@ -12,9 +12,9 @@
   <name>EIP Client App</name>
 
   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <start-class>com.ozonehis.eip.Application</start-class>
   </properties>
 
@@ -34,27 +34,40 @@
       <groupId>com.ozonehis</groupId>
       <artifactId>eip-commons</artifactId>
       <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.yaml</groupId>
+          <artifactId>snakeyaml</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
   <build>
-    <finalName>eip-client-${project.version}</finalName>
+    <finalName>eip-client</finalName>
     <resources>
       <resource>
         <filtering>true</filtering>
         <directory>src/main/resources</directory>
+        <includes>
+          <include>**/version.txt</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>**/version.txt</exclude>
+        </excludes>
       </resource>
     </resources>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${springBoot.version}</version>
+        <version>${spring-boot.version}</version>
         <configuration>
-          <layers>
-            <enabled>true</enabled>
-            <configuration>${project.basedir}/src/layers.xml</configuration>
-          </layers>
+          <layout>ZIP</layout>
           <excludes>
             <exclude>
               <groupId>org.project-lombok</groupId>
@@ -70,23 +83,27 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <id>package-eip-client</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/resources/assembly/assembly.xml</descriptor>
+              </descriptors>
+              <finalName>eip-client</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
-  <profiles>
-    <profile>
-      <id>dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <spring.profiles.active>dev</spring.profiles.active>
-      </properties>
-    </profile>
-    <profile>
-      <id>prod</id>
-      <properties>
-        <spring.profiles.active>prod</spring.profiles.active>
-      </properties>
-    </profile>
-  </profiles>
 </project>

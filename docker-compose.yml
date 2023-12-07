@@ -1,12 +1,9 @@
 version: '3'
 services:
   ozone-eip-client:
+    container_name: eip-client
     image: eip-client:latest
-    container_name: ozone-eip-client
+    environment:
+        - EIP_PROFILE=dev
     ports:
-      - "8080:8080"
-    volumes:
-      - ./routes:/ozone-eip-client/routes
-
-volumes:
-    routes: ~
+      - "8085:8080"

@@ -5,5 +5,5 @@
  | |_| / /| |_| | |\  | |___  | |___ | ||  __/  | |___| |___ | || |___| |\  | | |    / / / /
   \___/____\___/|_| \_|_____| |_____|___|_|      \____|_____|___|_____|_| \_| |_|   /_/_/_/
 
-Ozone EIP Client Version: ${eip.client.formatted-version}
+Powered by ::
 Spring Boot ${spring-boot.formatted-version}
