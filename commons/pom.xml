@@ -13,7 +13,72 @@
   <name>EIP Commons</name>
   <description>A collections of shared EIP utils/commons libraries.</description>
 
+  <properties>
+    <h2Version>2.2.224</h2Version>
+    <liquibase.version>4.24.0</liquibase.version>
+    <mysqlConnectorVersion>8.0.28</mysqlConnectorVersion>
+    <hibernateVersion>6.3.1.Final</hibernateVersion>
+    <hibernateValidatorVersion>6.1.5.Final</hibernateValidatorVersion>
+  </properties>
+
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-artemis</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${liquibase.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.yaml</groupId>
+          <artifactId>snakeyaml</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernateVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernateValidatorVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysqlConnectorVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2Version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20230227</version>
+      <scope>compile</scope>
+    </dependency>
+
     <!-- Camel -->
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -44,12 +109,6 @@
       <artifactId>camel-jpa-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20230227</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-http</artifactId>
       <version>${camel.version}</version>
@@ -74,6 +133,22 @@
       <artifactId>camel-base64</artifactId>
       <version>${camel.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-sql</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel.springboot</groupId>
+      <artifactId>camel-debezium-mysql-starter</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jsonpath</artifactId>
+      <version>${camel.version}</version>
+    </dependency>
+
     <!-- Tests -->
     <dependency>
       <groupId>com.ozonehis</groupId>
