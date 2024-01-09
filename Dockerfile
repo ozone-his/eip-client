@@ -19,7 +19,7 @@ WORKDIR ${EIP_CLIENT_DIR}
 
 ENV EIP_PROFILE=dev
 
-RUN chmod +x ./start.sh && chmod +x ./version.txt
+RUN chmod +x ./start.sh
 
 EXPOSE 8080
 

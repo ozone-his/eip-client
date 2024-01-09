@@ -1,5 +1,5 @@
 <assembly>
-    <id>eip-pro-client</id>
+    <id>eip-client</id>
     <formats>
         <format>tar</format>
         <format>zip</format>
@@ -10,7 +10,7 @@
             <outputDirectory>.</outputDirectory>
             <includes>
                 <include>start.sh</include>
-                <include>start.bat</include>
+                <include>start.cmd</include>
             </includes>
             <fileMode>0755</fileMode>
         </fileSet>
