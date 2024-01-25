@@ -14,10 +14,10 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'adopt'
 
       - name: Cache Maven dependencies
@@ -33,11 +33,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Build with Maven
-        run: mvn clean package
-
-      - name: Move the built artifact
-        if: github.ref == 'refs/heads/main'
-        run: mv app/target/*.jar docker/
+        run: mvn clean package -DskipTests
 
       -
         name: Set up QEMU
@@ -70,7 +66,7 @@ jobs:
         env: 
           SERVICE: eip-client
         with:
-          context: ./docker
+          context: .
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
