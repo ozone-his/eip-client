@@ -1,0 +1,9 @@
+version: '3'
+services:
+  eip-client:
+    container_name: ozone-eip-client
+    environment:
+        - EIP_PROFILE=dev
+    image: mekomsolutions/eip-client
+    ports:
+      - "8085:8080"

@@ -1,8 +1,8 @@
 package com.ozonehis.eip.utils;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class JsonUtilsTest {
 
@@ -31,7 +31,7 @@ public class JsonUtilsTest {
                 JsonUtils.containsItemWithKeyEqualsValue(json, "service_uid", "8418cace20e34a8fa6f2852bdaa1d012");
 
         // Then
-        assertEquals(expectedValue.booleanValue(), actualValue.booleanValue());
+        assertEquals(expectedValue, actualValue);
     }
 
     @Test

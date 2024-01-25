@@ -4,51 +4,91 @@
   <parent>
     <groupId>com.ozonehis</groupId>
     <artifactId>eip-client</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>eip-client-app</artifactId>
   <packaging>jar</packaging>
-  <name>EIP client app</name>
+  <name>EIP Client App</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <start-class>com.ozonehis.eip.Application</start-class>
+  </properties>
+
   <dependencies>
-    <!-- api -->
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.ozonehis</groupId>
       <artifactId>eip-commons</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
+
   <build>
-    <finalName>eip-client-${project.version}</finalName>
+    <finalName>eip-client</finalName>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/version.txt</include>
+        </includes>
+      </resource>
+      <resource>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>**/version.txt</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
-      <plugin>
-        <artifactId>maven-clean-plugin</artifactId>
-        <version>3.1.0</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.0.2</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>2.6.3</version>
+        <version>${spring-boot.version}</version>
+        <configuration>
+          <layout>ZIP</layout>
+          <excludes>
+            <exclude>
+              <groupId>org.project-lombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
         <executions>
           <execution>
             <goals>
               <goal>repackage</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <id>package-eip-client</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/resources/assembly/assembly.xml</descriptor>
+              </descriptors>
+              <finalName>eip-client</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+            </configuration>
           </execution>
         </executions>
       </plugin>

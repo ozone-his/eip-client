@@ -12,6 +12,8 @@
 *.DS_Store
 .vscode/
 
+## IntelliJ IDEA ##
+.idea/
 
 # Created by https://www.gitignore.io/api/git,java,maven,eclipse,windows
 
@@ -28,6 +30,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+*.iml
 
 # External tool builders
 .externalToolBuilders/
