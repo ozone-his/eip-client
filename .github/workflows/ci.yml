@@ -10,7 +10,7 @@ on:
 
 jobs:
   validate:
-    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-ci.yml@main
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-build-test.yml@main
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
