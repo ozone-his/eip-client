@@ -19,6 +19,7 @@
     <mysqlConnectorVersion>8.0.28</mysqlConnectorVersion>
     <hibernateVersion>6.3.1.Final</hibernateVersion>
     <hibernateValidatorVersion>6.1.5.Final</hibernateValidatorVersion>
+    <xmlrpc.version>3.1.3</xmlrpc.version>
   </properties>
 
   <dependencies>
@@ -62,6 +63,11 @@
       <artifactId>json</artifactId>
       <version>20230227</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xmlrpc</groupId>
+      <artifactId>xmlrpc-client</artifactId>
+      <version>${xmlrpc.version}</version>
     </dependency>
 
     <!-- Camel -->
