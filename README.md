@@ -1,6 +1,6 @@
 # Ozone EIP Client
 
-[![CI](https://github.com/ozone-his/eip-client/actions/workflows/build.yml/badge.svg)](https://github.com/ozone-his/eip-client/actions/workflows/build.yml)
+[![CI](https://github.com/ozone-his/eip-client/actions/workflows/ci.yml/badge.svg)](https://github.com/ozone-his/eip-client/actions/workflows/ci.yml)
 
 A generic Spring Boot application designed for executing Apache Camel routes within Ozone. It can be used as a base image for building custom EIP clients. It has support for **_Java DSL_** and **_XML DSL_** routes.
 
