@@ -19,20 +19,8 @@ jobs:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-spotless-check.yml@main
 
-  pre-release:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    needs: spotless
-    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
-    with:
-      artifact-name: "eip-client"
-      artifact-path: "app/target/eip-client.zip"
-      upload-artifacts: true
-    secrets:
-      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-
   release:
-    if: ${{ github.event_name == 'release' }}
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
     needs: spotless
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
@@ -42,18 +30,6 @@ jobs:
     secrets:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-
-  docker-pre-release:
-    needs: pre-release
-    uses: mekomsolutions/shared-github-workflow/.github/workflows/docker-build-publish.yml@main
-    with:
-      artifact-name: "eip-client"
-      artifact-path: "app/target"
-      download-artifacts: true
-      image-name: "eip-client"
-    secrets:
-      DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_REGISTRY_USERNAME }}
-      DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_REGISTRY_PASSWORD }}
 
   docker-release:
     needs: release
