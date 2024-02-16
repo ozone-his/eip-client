@@ -11,7 +11,7 @@ Follow the instructions below to get a copy of the project up and running on you
 1. **Clone the project**
 
    ```bash
-   git clone https://github.com/ozone-his/eip-client.git
+   git clone https://github.com/ozone-his/eip-client
    ```
 2. **Build the project**
 
