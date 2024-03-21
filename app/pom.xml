@@ -3,13 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.ozonehis</groupId>
-    <artifactId>eip-client</artifactId>
+    <artifactId>eip-client-parent</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>eip-client-app</artifactId>
+  <artifactId>eip-client</artifactId>
   <packaging>jar</packaging>
-  <name>EIP Client App</name>
+  <name>EIP Client</name>
+  <description>The EIP client application</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
