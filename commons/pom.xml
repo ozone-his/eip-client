@@ -20,6 +20,7 @@
     <hibernateVersion>6.3.1.Final</hibernateVersion>
     <hibernateValidatorVersion>6.1.5.Final</hibernateValidatorVersion>
     <xmlrpc.version>3.1.3</xmlrpc.version>
+    <kakfa.connnect-runtime.version>3.4.1</kakfa.connnect-runtime.version>
   </properties>
 
   <dependencies>
@@ -133,11 +134,32 @@
       <groupId>org.apache.camel.springboot</groupId>
       <artifactId>camel-debezium-mysql-starter</artifactId>
       <version>${camel.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.kafka</groupId>
+          <artifactId>connect-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jsonpath</artifactId>
       <version>${camel.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>connect-runtime</artifactId>
+      <version>${kakfa.connnect-runtime.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>ch.qos.reload4j</groupId>
+          <artifactId>reload4j</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- Tests -->
