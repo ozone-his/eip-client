@@ -26,6 +26,7 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <start-class>com.ozonehis.eip.Application</start-class>
+    <liquibaseVersion>4.24.0</liquibaseVersion>
   </properties>
 
   <dependencies>
@@ -37,6 +38,21 @@
       <groupId>com.ozonehis</groupId>
       <artifactId>eip-commons</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>${liquibaseVersion}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.yaml</groupId>
+          <artifactId>snakeyaml</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
