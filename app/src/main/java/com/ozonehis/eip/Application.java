@@ -8,29 +8,26 @@
 package com.ozonehis.eip;
 
 import jakarta.annotation.PostConstruct;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.DatabaseException;
+import liquibase.exception.LockException;
 import liquibase.lockservice.LockServiceFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import javax.sql.DataSource;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"org.openmrs.eip, com.ozonehis.eip"})
 public class Application {
-    @Value("${spring.mngt-datasource.jdbcUrl:#{null}}")
-    private String url;
-
-    @Value("${spring.mngt-datasource.username:#{null}}")
-    private String username;
-
-    @Value("${spring.mngt-datasource.password:#{null}}")
-    private String password;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     public static void main(final String[] args) {
         log.info("Starting EIP Client Application . . .");
@@ -39,25 +36,13 @@ public class Application {
 
     @PostConstruct
     public void releaseLiquibaseLock() {
-        if (url == null || username == null || password == null) {
-            log.info("Skipping liquibase step: forceReleaseLock");
-            return;
-        }
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-            Database database =
-                    DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
-            LockServiceFactory.getInstance().getLockService(database).forceReleaseLock();
-        } catch (Exception e) {
-            log.error("Error occurred while releasing lock from Liquibase: {}", e.getMessage(), e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    log.error("Error occurred while closing connection: {}", e.getMessage(), e);
-                }
+        if (applicationContext.containsBean("mngtDataSource")) {
+            DataSource mgtDatasource = applicationContext.getBean("mngtDataSource", DataSource.class);
+            try {
+                Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(mgtDatasource.getConnection()));
+                LockServiceFactory.getInstance().getLockService(database).forceReleaseLock();
+            } catch (DatabaseException | SQLException | LockException e) {
+                throw new RuntimeException(e);
             }
         }
     }
