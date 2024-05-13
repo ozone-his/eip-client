@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"org.openmrs.eip, com.ozonehis.eip"})
@@ -43,12 +44,22 @@ public class Application {
             log.info("Skipping liquibase step: forceReleaseLock");
             return;
         }
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(url, username, password);
             Database database = DatabaseFactory.getInstance()
                     .findCorrectDatabaseImplementation(new JdbcConnection(connection));
             LockServiceFactory.getInstance().getLockService(database).forceReleaseLock();
         } catch (Exception e) {
             log.error("Error occurred while releasing lock from Liquibase: {}", e.getMessage(), e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    log.error("Error occurred while closing connection: {}", e.getMessage(), e);
+                }
+            }
         }
     }
 }
