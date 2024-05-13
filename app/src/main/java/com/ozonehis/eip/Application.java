@@ -7,14 +7,19 @@
  */
 package com.ozonehis.eip;
 
+import jakarta.annotation.PostConstruct;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.lockservice.LockServiceFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -23,21 +28,31 @@ import java.sql.Connection;
 @SpringBootApplication(scanBasePackages = {"org.openmrs.eip, com.ozonehis.eip"})
 public class Application {
 
-    @Value("mngtDataSource")
-    private static DataSource dataSource;
+    @Value("${spring.liquibase.enabled}")
+    private boolean liquibaseEnabled;
+
+    @Qualifier("mgmt-datasource")
+    private DataSource dataSource;
 
     public static void main(final String[] args) {
         log.info("Starting EIP Client Application . . .");
-        releaseLiquibaseLock();
         SpringApplication.run(Application.class, args);
     }
 
-    private static void releaseLiquibaseLock() {
-        if (dataSource == null) {
-            log.info("No datasource found, skipping liquibase force release lock step");
+    @Bean(name = "mgmt-datasource")
+    @ConfigurationProperties(prefix = "spring.mngt-datasource")
+    public DataSource dataSource() throws ClassNotFoundException {
+        return DataSourceBuilder.create().build();
+    }
+
+    @PostConstruct
+    public void releaseLiquibaseLock() {
+        if (!liquibaseEnabled) {
+            log.error("Inside releaseLiquibaseLock return");
             return;
         }
         try (Connection connection = dataSource.getConnection()) {
+            log.error("Adding test log user name {} driver name {}", dataSource.getConnection().getMetaData().getUserName(), dataSource.getConnection().getMetaData().getDriverName());
             Database database = DatabaseFactory.getInstance()
                     .findCorrectDatabaseImplementation(new JdbcConnection(connection));
             LockServiceFactory.getInstance().getLockService(database).forceReleaseLock();

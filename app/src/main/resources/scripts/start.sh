@@ -10,6 +10,15 @@ else
   fi
 fi
 
+
+# Check if enable liquibase variable is set
+if [ -z "${ENABLE_LIQUIBASE}" ]; then
+    # ENABLE_LIQUIBASE is not set, setting it to true
+    ENABLE_LIQUIBASE="true"
+fi
+
+export ENABLE_LIQUIBASE
+
 # Ensure that the provided environment is valid
 case "$ENV" in
   dev|prod|test|staging)
