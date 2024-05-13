@@ -8,6 +8,9 @@
 package com.ozonehis.eip;
 
 import jakarta.annotation.PostConstruct;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
@@ -16,10 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"org.openmrs.eip, com.ozonehis.eip"})
@@ -47,8 +46,8 @@ public class Application {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url, username, password);
-            Database database = DatabaseFactory.getInstance()
-                    .findCorrectDatabaseImplementation(new JdbcConnection(connection));
+            Database database =
+                    DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
             LockServiceFactory.getInstance().getLockService(database).forceReleaseLock();
         } catch (Exception e) {
             log.error("Error occurred while releasing lock from Liquibase: {}", e.getMessage(), e);
