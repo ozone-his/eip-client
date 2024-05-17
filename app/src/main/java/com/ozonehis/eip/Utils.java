@@ -29,6 +29,6 @@ public class Utils {
         LOGGER.info("Shutting down the application...");
 
         // Shutdown in a new thread to ensure other background shutdown threads complete too
-        new Thread(() -> System.exit(129)).start();
+        new Thread(() -> System.exit(0)).start();
     }
 }
