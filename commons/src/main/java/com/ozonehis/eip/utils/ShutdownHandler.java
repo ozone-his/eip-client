@@ -7,6 +7,8 @@
  */
 package com.ozonehis.eip.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -18,6 +20,10 @@ public class ShutdownHandler implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
+    private static boolean shuttingDown = false;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShutdownHandler.class);
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -27,6 +33,17 @@ public class ShutdownHandler implements ApplicationContextAware {
         ConfigurableApplicationContext configurableApplicationContext =
                 (ConfigurableApplicationContext) applicationContext;
         configurableApplicationContext.close();
-        Utils.shutdown();
+        exitApplication();
+    }
+
+    public static synchronized void exitApplication() {
+        if (shuttingDown) {
+            LOGGER.info("Application is already shutting down");
+            return;
+        }
+        shuttingDown = true;
+        LOGGER.info("Shutting down the application...");
+        // Shutdown in a new thread to ensure other background shutdown threads complete too
+        new Thread(() -> System.exit(0)).start();
     }
 }
