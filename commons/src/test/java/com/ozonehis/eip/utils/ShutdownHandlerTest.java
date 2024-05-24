@@ -31,7 +31,7 @@ public class ShutdownHandlerTest {
     }
 
     @Test
-    public void testShutdown() {
+    public void testShutdownCloseApplicationContext() {
         shutdownHandler.shutdown();
 
         Mockito.verify((ConfigurableApplicationContext) applicationContext, times(1))
@@ -50,7 +50,7 @@ public class ShutdownHandlerTest {
     }
 
     @Test
-    public void testExitApplication_ShuttingDown() {
+    public void testExitApplicationWhenAlreadyShuttingDown() {
         ShutdownHandler.shuttingDown = true;
 
         ShutdownHandler.exitApplication();
