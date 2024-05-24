@@ -1,12 +1,19 @@
+/*
+ * Copyright © 2021, Ozone HIS <info@ozone-his.com>
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 package com.ozonehis.eip.utils;
+
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import static org.mockito.Mockito.*;
 
 public class ShutdownHandlerTest {
 
@@ -27,7 +34,8 @@ public class ShutdownHandlerTest {
     public void testShutdown() {
         shutdownHandler.shutdown();
 
-        Mockito.verify((ConfigurableApplicationContext) applicationContext, times(1)).close();
+        Mockito.verify((ConfigurableApplicationContext) applicationContext, times(1))
+                .close();
     }
 
     @Test
