@@ -36,6 +36,8 @@ public class ShutdownHandlerTest {
 
         ShutdownHandler.exitApplication();
 
+        // Since System.exit() cannot be directly tested, we can't validate that it was invoked.
+        // We can only verify that the logger is invoked.
         Mockito.verify(logger, times(1)).info("Shutting down the application...");
     }
 
