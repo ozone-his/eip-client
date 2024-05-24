@@ -20,9 +20,9 @@ public class ShutdownHandler implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
-    private static boolean shuttingDown = false;
+    public static boolean shuttingDown = false;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ShutdownHandler.class);
+    public static Logger LOGGER = LoggerFactory.getLogger(ShutdownHandler.class);
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -43,6 +43,7 @@ public class ShutdownHandler implements ApplicationContextAware {
         }
         shuttingDown = true;
         LOGGER.info("Shutting down the application...");
+
         // Shutdown in a new thread to ensure other background shutdown threads complete too
         new Thread(() -> System.exit(0)).start();
     }
