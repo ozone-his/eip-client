@@ -7,9 +7,11 @@
  */
 package com.ozonehis.eip.utils;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -26,7 +28,7 @@ public class ShutdownHandlerTest {
         shutdownHandler = new ShutdownHandler();
         applicationContext = mock(ConfigurableApplicationContext.class);
         shutdownHandler.setApplicationContext(applicationContext);
-        logger = Mockito.mock(Logger.class);
+        logger = mock(Logger.class);
         ShutdownHandler.LOGGER = logger;
     }
 
