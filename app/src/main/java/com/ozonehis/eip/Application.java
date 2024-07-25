@@ -12,7 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
-@SpringBootApplication(scanBasePackages = "com.ozonehis.eip.*, ${eip.app.scan.packages}")
+@SpringBootApplication(scanBasePackages = "com.ozonehis.eip.*, ${eip.app.scan.packages:}")
 public class Application {
 
     public static void main(final String[] args) {
