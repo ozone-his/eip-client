@@ -19,9 +19,13 @@ jobs:
     needs: validate
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-spotless-check.yml@main
 
-  release:
-    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
+  license:
     needs: spotless
+    uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-license-check.yml@main
+
+  publish:
+    if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
+    needs: license
     uses: mekomsolutions/shared-github-workflow/.github/workflows/maven-publish.yml@main
     with:
       artifact-name: "eip-client"
@@ -31,8 +35,8 @@ jobs:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
-  docker-release:
-    needs: release
+  docker-publish:
+    needs: publish
     uses: mekomsolutions/shared-github-workflow/.github/workflows/docker-build-publish.yml@main
     with:
       artifact-name: "eip-client"
