@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Oauth2Token {
+public class OAuth2Token {
 
     @JsonProperty("access_token")
     private String accessToken;

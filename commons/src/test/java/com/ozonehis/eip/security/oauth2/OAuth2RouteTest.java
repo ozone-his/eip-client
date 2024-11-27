@@ -23,7 +23,7 @@ import org.apache.camel.model.RouteDefinition;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.Test;
 
-public class Oauth2RouteTest extends CamelTestSupport {
+public class OAuth2RouteTest extends CamelTestSupport {
 
     public static final String OAUTH_REQUEST_BODY =
             "grant_type=client_credentials&client_id=testClientId&client_secret=testClientSecret&scope=testClientScope";
@@ -37,7 +37,7 @@ public class Oauth2RouteTest extends CamelTestSupport {
     @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext context = new DefaultCamelContext();
-        context.addRoutes(new Oauth2Route());
+        context.addRoutes(new OAuth2Route());
         return context;
     }
 

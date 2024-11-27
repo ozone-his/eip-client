@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-public class Oauth2ProcessorTest extends CamelTestSupport {
+public class OAuth2ProcessorTest extends CamelTestSupport {
 
     public static final String TEST_ACCESS_TOKEN = "testAccessToken";
 
@@ -35,7 +35,7 @@ public class Oauth2ProcessorTest extends CamelTestSupport {
     private ProducerTemplate producerTemplate;
 
     @InjectMocks
-    private Oauth2Processor oauth2Processor;
+    private OAuth2Processor oauth2Processor;
 
     private static AutoCloseable mocksCloser;
 
@@ -64,7 +64,7 @@ public class Oauth2ProcessorTest extends CamelTestSupport {
     public void shouldAddAuthorizationHeaderGivenClientIdAndSecret() {
         // Setup
         when(producerTemplate.requestBodyAndHeader(
-                        anyString(), anyString(), anyString(), anyString(), eq(Oauth2Token.class)))
+                        anyString(), anyString(), anyString(), anyString(), eq(OAuth2Token.class)))
                 .thenReturn(getOauthToken());
 
         // Replay
@@ -79,7 +79,7 @@ public class Oauth2ProcessorTest extends CamelTestSupport {
         // Setup
         String accessTokenUri = "https://test.auth.com/token";
         when(producerTemplate.requestBodyAndHeader(
-                        anyString(), anyString(), eq("authUrl"), eq(accessTokenUri), eq(Oauth2Token.class)))
+                        anyString(), anyString(), eq("authUrl"), eq(accessTokenUri), eq(OAuth2Token.class)))
                 .thenReturn(getOauthToken());
 
         // Replay & Verify
@@ -91,15 +91,15 @@ public class Oauth2ProcessorTest extends CamelTestSupport {
         // Setup
         String accessTokenUri = "https://test.auth.com/token";
         when(producerTemplate.requestBodyAndHeader(
-                        anyString(), anyString(), eq("authUrl"), eq(accessTokenUri), eq(Oauth2Token.class)))
+                        anyString(), anyString(), eq("authUrl"), eq(accessTokenUri), eq(OAuth2Token.class)))
                 .thenReturn(getOauthToken());
 
         // Replay & Verify
         assertThrows(IllegalStateException.class, () -> oauth2Processor.process(exchange));
     }
 
-    private static Oauth2Token getOauthToken() {
-        Oauth2Token oAuthToken = new Oauth2Token();
+    private static OAuth2Token getOauthToken() {
+        OAuth2Token oAuthToken = new OAuth2Token();
         oAuthToken.setAccessToken(TEST_ACCESS_TOKEN);
         oAuthToken.setExpiresIn(3600);
         oAuthToken.setRefreshExpiresIn(3600);

@@ -26,12 +26,12 @@ import org.springframework.stereotype.Component;
 @Setter
 @Getter
 @Component("eip.oauthProcessor")
-public class Oauth2Processor implements Processor {
+public class OAuth2Processor implements Processor {
 
     private final ProducerTemplate producerTemplate;
 
     @Autowired
-    public Oauth2Processor(ProducerTemplate producerTemplate) {
+    public OAuth2Processor(ProducerTemplate producerTemplate) {
         this.producerTemplate = producerTemplate;
     }
 
@@ -44,7 +44,7 @@ public class Oauth2Processor implements Processor {
                 .clientSecret(exchange.getMessage().getHeader(HEADER_OAUTH2_CLIENT_SECRET, String.class))
                 .build();
         validateOAuth2Properties(properties);
-        Oauth2Token authToken = callAccessTokenUri(properties.getAuthUrl(), buildOAuth2RequestBody(properties));
+        OAuth2Token authToken = callAccessTokenUri(properties.getAuthUrl(), buildOAuth2RequestBody(properties));
         if (authToken == null) {
             throw new IllegalStateException("OAuth2 token is null");
         } else {
@@ -66,9 +66,9 @@ public class Oauth2Processor implements Processor {
                 + properties.getClientScope();
     }
 
-    private Oauth2Token callAccessTokenUri(String accessTokenUri, String requestBody) {
+    private OAuth2Token callAccessTokenUri(String accessTokenUri, String requestBody) {
         return producerTemplate.requestBodyAndHeader(
-                "direct:oauth2", requestBody, HEADER_OAUTH2_URL, accessTokenUri, Oauth2Token.class);
+                "direct:oauth2", requestBody, HEADER_OAUTH2_URL, accessTokenUri, OAuth2Token.class);
     }
 
     private void setAuthorizationHeader(Exchange exchange, String accessToken) {

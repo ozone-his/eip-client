@@ -14,7 +14,7 @@ import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Oauth2Route extends RouteBuilder {
+public class OAuth2Route extends RouteBuilder {
 
     @Override
     public void configure() {
@@ -24,6 +24,6 @@ public class Oauth2Route extends RouteBuilder {
                 .setHeader("CamelHttpMethod", constant("POST"))
                 .toD("${header." + HEADER_OAUTH2_URL + "}")
                 .unmarshal()
-                .json(JsonLibrary.Jackson, Oauth2Token.class);
+                .json(JsonLibrary.Jackson, OAuth2Token.class);
     }
 }
