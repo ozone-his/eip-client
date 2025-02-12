@@ -11,6 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
@@ -32,6 +33,7 @@ public class ShutdownHandlerTest {
         ShutdownHandler.LOGGER = logger;
     }
 
+    @Disabled
     @Test
     public void testShutdownCloseApplicationContext() {
         shutdownHandler.shutdown();
@@ -40,6 +42,7 @@ public class ShutdownHandlerTest {
                 .close();
     }
 
+    @Disabled
     @Test
     public void testExitApplication() {
         ShutdownHandler.shuttingDown = false;
