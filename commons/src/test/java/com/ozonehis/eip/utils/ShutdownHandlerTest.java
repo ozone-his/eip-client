@@ -33,7 +33,7 @@ public class ShutdownHandlerTest {
         ShutdownHandler.LOGGER = logger;
     }
 
-    @Disabled
+    @Disabled // TODO: System.exit(0) exits the JVM causing all the tests to fail
     @Test
     public void testShutdownCloseApplicationContext() {
         shutdownHandler.shutdown();
@@ -42,7 +42,7 @@ public class ShutdownHandlerTest {
                 .close();
     }
 
-    @Disabled
+    @Disabled // TODO: System.exit(0) exits the JVM causing all the tests to fail
     @Test
     public void testExitApplication() {
         ShutdownHandler.shuttingDown = false;
