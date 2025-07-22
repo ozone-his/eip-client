@@ -25,6 +25,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <logstash-logback-encoder.version>7.4</logstash-logback-encoder.version>
     <start-class>com.ozonehis.eip.Application</start-class>
   </properties>
 
@@ -37,6 +38,11 @@
       <groupId>com.ozonehis</groupId>
       <artifactId>eip-commons</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+      <version>${logstash-logback-encoder.version}</version>
     </dependency>
   </dependencies>
 
