@@ -58,8 +58,8 @@
     <spring-boot.version>3.1.4</spring-boot.version>
     <testContainers.version>1.19.1</testContainers.version>
     <lombok.version>1.18.30</lombok.version>
-    <spotless.version>2.30.0</spotless.version>
-    <palantirJavaFormat.version>1.1.0</palantirJavaFormat.version>
+    <spotless.version>2.46.1</spotless.version>
+    <palantirJavaFormat.version>2.28.0</palantirJavaFormat.version>
   </properties>
 
   <dependencyManagement>

@@ -10,11 +10,13 @@ package com.ozonehis.eip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.PropertySource;
 
 @Slf4j
 @PropertySource("classpath:eip-client.properties")
 @SpringBootApplication(scanBasePackages = "com.ozonehis.eip.*, ${eip.app.scan.packages}")
+@ConfigurationPropertiesScan
 public class Application {
 
     public static void main(final String[] args) {
