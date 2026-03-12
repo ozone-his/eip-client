@@ -16,19 +16,20 @@ import java.net.URISyntaxException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
 @RequiredArgsConstructor
 public class ExternalSystemsAvailabilityChecker {
 
     private final ExternalSystemsAvailabilityProperties properties;
 
+    private final StartupAvailabilityState startupAvailabilityState;
+
     public void waitUntilAvailable() throws InterruptedException {
         final List<String> configuredEndpoints = normalizedEndpoints();
         if (configuredEndpoints.isEmpty()) {
             log.warn("No external endpoints configured for startup availability check; continuing startup");
+            startupAvailabilityState.markReady();
             return;
         }
 
@@ -40,12 +41,15 @@ public class ExternalSystemsAvailabilityChecker {
                     .toList();
 
             if (unavailableEndpoints.isEmpty()) {
+                startupAvailabilityState.markReady();
                 log.info("All required external systems are reachable");
                 return;
             }
 
+            startupAvailabilityState.markWaiting(unavailableEndpoints);
             final long elapsedMs = System.currentTimeMillis() - startedAt;
             if (properties.getMaxWaitMs() > 0 && elapsedMs >= properties.getMaxWaitMs()) {
+                startupAvailabilityState.markTimedOut(unavailableEndpoints);
                 throw new IllegalStateException(
                         "Timed out waiting for external systems: " + String.join(", ", unavailableEndpoints));
             }

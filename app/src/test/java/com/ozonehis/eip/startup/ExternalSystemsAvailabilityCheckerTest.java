@@ -31,7 +31,8 @@ class ExternalSystemsAvailabilityCheckerTest {
         try {
             final ExternalSystemsAvailabilityProperties properties = propertiesWithEndpoints(
                     List.of("http://127.0.0.1:" + server.getAddress().getPort() + "/health"));
-            final ExternalSystemsAvailabilityChecker checker = new ExternalSystemsAvailabilityChecker(properties);
+            final ExternalSystemsAvailabilityChecker checker =
+                    new ExternalSystemsAvailabilityChecker(properties, new StartupAvailabilityState());
 
             assertTrue(checker.isEndpointAvailable(properties.getEndpoints().get(0)));
         } finally {
@@ -51,9 +52,12 @@ class ExternalSystemsAvailabilityCheckerTest {
         properties.setMaxWaitMs(150);
         properties.setRetryIntervalMs(50);
 
-        final ExternalSystemsAvailabilityChecker checker = new ExternalSystemsAvailabilityChecker(properties);
+        final StartupAvailabilityState startupAvailabilityState = new StartupAvailabilityState();
+        final ExternalSystemsAvailabilityChecker checker =
+                new ExternalSystemsAvailabilityChecker(properties, startupAvailabilityState);
 
         assertThrows(IllegalStateException.class, checker::waitUntilAvailable);
+        assertTrue(startupAvailabilityState.isTimedOut());
         assertFalse(checker.isEndpointAvailable(properties.getEndpoints().get(0)));
     }
 
